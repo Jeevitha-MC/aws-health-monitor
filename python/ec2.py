@@ -26,3 +26,14 @@ def get_all_instances():
             })
     return instances
 
+def get_list_of_instance_ids(all_instances):
+    instance_ids = []
+    for instance in all_instances:
+        instance_ids.append(instance["InstanceId"])
+    return instance_ids
+
+def get_instance_status(instance_ids):
+    ec2 = get_ec2_client()
+    response = ec2.describe_instance_status(InstanceIds=instance_ids, IncludeAllInstances=True)
+    return response
+
