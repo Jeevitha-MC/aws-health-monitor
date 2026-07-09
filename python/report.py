@@ -13,6 +13,8 @@ def print_ec2_report(instances, instance_statuses):
         print(f"Instance ID: {instance['InstanceId']}")
         print(f"Instance Type: {instance['InstanceType']}")
         print(f"State: {instance['State']}")
+        print(f"Instance Status: {instance['InstanceStatus']}")
+        print(f"System Status: {instance['SystemStatus']}")
         print(f"CPU Utilization: {cpu:.2f}%" if cpu is not None else "CPU Utilization: No data available")
         print(f"Availability Zone: {instance['AvailabilityZone']}")
         print(f"Public IP: {instance['PublicIp']}")
