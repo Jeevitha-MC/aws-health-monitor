@@ -37,3 +37,11 @@ def get_instance_status(instance_ids):
     response = ec2.describe_instance_status(InstanceIds=instance_ids, IncludeAllInstances=True)
     return response
 
+def get_health_status(instance_statuses):
+    health_status = {}
+    for status in instance_statuses["InstanceStatuses"]:
+        health_status[status["InstanceId"]] = {
+            "SystemStatus": status["SystemStatus"]["Status"],
+            "InstanceStatus": status["InstanceStatus"]["Status"]
+        }
+    return health_status
