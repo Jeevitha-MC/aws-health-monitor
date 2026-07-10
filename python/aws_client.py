@@ -7,3 +7,7 @@ def get_ec2_client():
 
 def get_cloudwatch_client():
     return boto3.client('cloudwatch')
+
+def get_sns_client():
+    return boto3.client('sns')
+
