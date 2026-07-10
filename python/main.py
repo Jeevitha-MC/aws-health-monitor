@@ -3,6 +3,7 @@ from ec2 import (get_all_instances, get_list_of_instance_ids, get_instance_statu
 from report import print_ec2_report
 from cloudwatch import get_cpu_utilization
 from sns_alert import send_email_alert
+from export_csv import export_to_csv
 
 def main():
     all_instances = get_all_instances()
@@ -37,6 +38,8 @@ def main():
             )
        
     print_ec2_report(all_instances, instance_statuses)
-   
+    export_to_csv(all_instances)
+    print("EC2 report exported to ec2_report.csv")
+
 if __name__ == "__main__":
     main()

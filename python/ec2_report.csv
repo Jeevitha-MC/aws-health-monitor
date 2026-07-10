@@ -1,0 +1,2 @@
+Name,Instance ID,Instance Type,State,Instance Status,System Status,CPU Utilization,Availability Zone,Public IP,Private IP
+health-monitor-server,i-000ed59837a67d9e2,t3.micro,running,ok,ok,2.48%,us-east-1c,98.81.191.26,172.31.24.216
