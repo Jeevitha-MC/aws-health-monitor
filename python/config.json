@@ -1,0 +1,5 @@
+{
+    "cpu_threshold": 80,
+    "report_file": "ec2_report.csv",
+    "sns_topic_arn": "YOUR_TOPIC_ARN"
+}
