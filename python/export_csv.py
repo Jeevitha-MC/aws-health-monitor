@@ -1,8 +1,7 @@
 import csv
 
-def export_to_csv(instances):
-    REPORT_FILE = "ec2_report.csv"
-    with open(REPORT_FILE, mode='w', newline='') as file:
+def export_to_csv(instances, report_file):
+    with open(report_file, mode='w', newline='') as file:
         writer = csv.writer(file)
         writer.writerow([
             "Name", "Instance ID", "Instance Type", "State", "Instance Status",
