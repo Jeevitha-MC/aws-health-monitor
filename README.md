@@ -93,6 +93,8 @@ Running Instances: 1
 Stopped Instances: 0
 ============================================================
 ```
+## Future Enhancements
+Dockerizing this application, followed by deploying it on Kubernetes (Minikube)
 
 ## Author
 
