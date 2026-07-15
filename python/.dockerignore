@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+ec2_report.csv
+
+.git
+.gitignore
+
+.vscode/
+
+.env
