@@ -93,8 +93,22 @@ Running Instances: 1
 Stopped Instances: 0
 ============================================================
 ```
-## Future Enhancements
-Dockerizing this application, followed by deploying it on Kubernetes (Minikube)
+## Docker
+
+### Build the image
+
+```bash
+docker build -t aws-health-monitor:v1 .
+```
+
+### Run the container
+
+```bash
+MSYS_NO_PATHCONV=1 docker run --rm \
+  -e AWS_DEFAULT_REGION=us-east-1 \
+  -v /c/Users/<username>/.aws:/root/.aws:ro \
+  aws-health-monitor:v1
+```
 
 ## Author
 
