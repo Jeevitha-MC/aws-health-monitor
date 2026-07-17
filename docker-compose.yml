@@ -1,0 +1,10 @@
+services:
+  aws-health-monitor:
+    build:
+      context: ./python
+
+    environment:
+      AWS_DEFAULT_REGION : us-east-1
+
+    volumes:
+      - /c/Users/jeevi/.aws:/root/.aws:ro
