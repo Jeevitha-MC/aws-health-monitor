@@ -1,6 +1,6 @@
 # AWS Health Monitor
 
-A Python-based AWS monitoring tool that retrieves EC2 instance details, monitors CPU utilization using Amazon CloudWatch, exports reports to CSV, and sends email alerts using Amazon SNS.
+AWS Health Monitor is an end-to-end cloud infrastructure monitoring project built with Python and AWS. It automates EC2 health monitoring, CPU utilization analysis, CSV report generation, and SNS-based email notifications. The project showcases Infrastructure as Code using Terraform, containerization with Docker and Docker Compose, and local Kubernetes deployment using Minikube.
 
 ## Architecture
 
@@ -8,13 +8,18 @@ A Python-based AWS monitoring tool that retrieves EC2 instance details, monitors
 
 ## Features
 
-- Provision infrastructure using Terraform
+## Features
+
+- Provision AWS infrastructure using Terraform
 - Retrieve EC2 instance inventory
-- Monitor CPU utilization with CloudWatch
-- Check EC2 health status
+- Monitor CPU utilization using Amazon CloudWatch
+- Check EC2 instance and system health status
 - Export reports to CSV
 - Send SNS email alerts
 - Configure application using `config.json`
+- Containerize the application using Docker
+- Run the application with Docker Compose
+- Deploy the application to a local Kubernetes cluster (Minikube)
 
 ## Tech Stack
 
@@ -24,6 +29,9 @@ A Python-based AWS monitoring tool that retrieves EC2 instance details, monitors
 - Amazon SNS
 - Terraform
 - Boto3
+- Docker
+- Docker Compose
+- Kubernetes (Minikube)
 
 ## Project Structure
 
@@ -33,24 +41,30 @@ AWS-HEALTH-MONITOR/
 ├── images/
 │   └── architecture.png
 │
+├── kubernetes/
+│   └── pod.yaml
+│
 ├── python/
-│   ├── aws_client.py         # Creates AWS service clients
-│   ├── cloudwatch.py         # Retrieves CloudWatch CPU metrics
-│   ├── config.json           # Application configuration
-│   ├── config.py             # Loads configuration settings
-│   ├── ec2.py                # Retrieves EC2 instance information
-│   ├── export_csv.py         # Exports report to CSV
-│   ├── main.py               # Application entry point
-│   ├── report.py             # Prints EC2 health report
-│   ├── requirements.txt      # Python dependencies
-│   └── sns_alert.py          # Sends SNS email alerts
+│   ├── aws_client.py
+│   ├── cloudwatch.py
+│   ├── config.json
+│   ├── config.py
+│   ├── ec2.py
+│   ├── export_csv.py
+│   ├── main.py
+│   ├── report.py
+│   ├── requirements.txt
+│   └── sns_alert.py
 │
 ├── terraform/
-│   ├── main.tf               # EC2 infrastructure
-│   ├── outputs.tf            # Terraform outputs
-│   ├── provider.tf           # AWS provider configuration
-│   └── variables.tf          # Input variables
+│   ├── main.tf
+│   ├── outputs.tf
+│   ├── provider.tf
+│   └── variables.tf
 │
+├── Dockerfile
+├── docker-compose.yml
+├── .dockerignore
 ├── .gitignore
 └── README.md
 ```
@@ -108,6 +122,52 @@ MSYS_NO_PATHCONV=1 docker run --rm \
   -e AWS_DEFAULT_REGION=us-east-1 \
   -v /c/Users/<username>/.aws:/root/.aws:ro \
   aws-health-monitor:v1
+```
+## Docker Compose
+
+Run the application using Docker Compose:
+
+```bash
+docker compose up
+```
+
+Stop the application:
+
+```bash
+docker compose down
+```
+## Kubernetes (Minikube)
+
+Load the Docker image into Minikube:
+
+```bash
+minikube image load aws-health-monitor:v1
+```
+
+Create the Kubernetes Secret:
+
+```bash
+kubectl create secret generic aws-credentials \
+  --from-file=config=/mnt/c/Users/<username>/.aws/config \
+  --from-file=credentials=/mnt/c/Users/<username>/.aws/credentials
+```
+
+Deploy the application:
+
+```bash
+kubectl apply -f kubernetes/pod.yaml
+```
+
+View logs:
+
+```bash
+kubectl logs aws-health-monitor
+```
+
+Delete the Pod:
+
+```bash
+kubectl delete pod aws-health-monitor
 ```
 
 ## Author
